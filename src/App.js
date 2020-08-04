@@ -3,6 +3,7 @@ import { useEffect, useState, useRef } from "react"
 import useSWR from "swr"
 import axios from "axios"
 import cx from "classnames"
+import { Helmet } from "react-helmet"
 
 import FacebookPostEmbed from "./FacebookPostEmbed"
 import WormMan from "./components/svg/WormMan.jsx"
@@ -47,6 +48,27 @@ function App() {
 
   return (
     <main className={sty.App}>
+      <Helmet>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        />
+        <meta charSet="utf-8" />
+        <title>釘孤枝熱血大亂鬥</title>
+        {/* <meta property="og:image" content={require("./images/og-image.jpg")} />
+        <meta property="og:image:width" content="1146" />
+        <meta property="og:image:height" content="600" />
+        <meta property="og:title" content={allTitle} />
+        <meta
+          property="og:url"
+          content={`https://2019.tedxtaipei.org/now/${url}`}
+        />
+        <meta
+          property="og:description"
+          content="一場轟炸式的腦力激盪，舞台上下串連好點子，一天15位來自不同領域的講者，探索人、想法、行動緊扣的凝聚變化，延伸活動連續3年邀集參與者共同支持反食物浪費、反一次性使用，從單一個體到群體的合作嘗試解決看見的問..."
+        />
+         */}
+      </Helmet>
       <Title className={sty.Title} />
       <H2 className={sty.H2} />
       <WormMan className={sty.WormMan} />
