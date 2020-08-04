@@ -6,7 +6,7 @@ function Icon(props) {
   const detectMobile = useMobileDetect()
   useEffect(() => {
     const target = document.getElementById("text-group")
-    detectMobile.isMobile() &&
+    !detectMobile.isMobile() &&
       setTimeout(() => {
         gsap
           .timeline()
