@@ -3,6 +3,7 @@ import gsap from "gsap"
 import useMobileDetect from "use-mobile-detect-hook"
 
 function Icon(props) {
+  const detectMobile = useMobileDetect()
   useEffect(() => {
     const target = document.getElementById("text-group")
     detectMobile.isMobile() &&
