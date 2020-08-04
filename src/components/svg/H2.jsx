@@ -13,7 +13,13 @@ function Icon(props) {
           .fromTo(
             target,
             { rotateY: -270, opacity: 1 },
-            { rotateY: 0, repeat: -1, repeatDelay: 5, ease: "power2.out" }
+            {
+              rotateY: 0,
+              repeat: -1,
+              repeatDelay: 5,
+              duration: 1.2,
+              ease: "elastic.out(1,0.4)",
+            }
           )
           .fromTo(
             target,
@@ -23,7 +29,8 @@ function Icon(props) {
               delay: 5,
               repeat: -1,
               repeatDelay: 5,
-              ease: "power2.out",
+              duration: 1.2,
+              ease: "elastic.out(1,0.4)",
             }
           )
       }, 1000)

@@ -20,7 +20,7 @@ function Icon(props) {
           scale: 1,
           rotate: 0,
           duration: 0.8,
-          ease: "power3.out",
+          ease: "back.out(1)",
         }
       )
     }, 300)

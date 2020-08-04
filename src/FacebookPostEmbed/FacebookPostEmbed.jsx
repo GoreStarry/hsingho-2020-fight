@@ -17,9 +17,7 @@ const FacebookPostEmbed = ({ children, postUrl, width, className }) => {
       </Helmet>
       <div id="fb-root"></div>
       <div className="flex--center">
-        <div className="fb-post" data-href={postUrl} data-width="500">
-          Loading...
-        </div>
+        <div className="fb-post" data-href={postUrl} data-width="500"></div>
       </div>
       {children}
     </div>

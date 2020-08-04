@@ -18,6 +18,7 @@ function Icon(props) {
               scale: 1.6,
               duration: 1.5,
               delay: 1,
+              ease: "back.out(1)",
             })
         )
     }, 1300)

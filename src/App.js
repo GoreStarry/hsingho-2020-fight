@@ -59,7 +59,9 @@ function App() {
                 target="__blank"
                 className={sty.link__cover}
                 href={data[0]["fb_poll_url"]}
-              ></a>
+              >
+                <span>投票去！</span>
+              </a>
               <FacebookPostEmbed
                 width="750"
                 className={sty.FacebookPostEmbed}
