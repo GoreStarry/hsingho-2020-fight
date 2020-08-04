@@ -54,11 +54,18 @@ function App() {
       <div className={cx(sty.container_FB, "flex--center")}>
         {data && (
           <>
-            <FacebookPostEmbed
-              width="750"
-              className={sty.FacebookPostEmbed}
-              postUrl={data[0]["fb_poll_url"]}
-            />
+            <div className={sty.box__poll}>
+              <a
+                target="__blank"
+                className={sty.link__cover}
+                href={data[0]["fb_poll_url"]}
+              ></a>
+              <FacebookPostEmbed
+                width="750"
+                className={sty.FacebookPostEmbed}
+                postUrl={data[0]["fb_poll_url"]}
+              />
+            </div>
             <div
               className="fb-page"
               data-href="https://www.facebook.com/hsinghoooh"

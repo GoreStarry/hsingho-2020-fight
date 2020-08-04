@@ -11,7 +11,8 @@
     "react-dom": "^16.13.1",
     "react-helmet": "^6.1.0",
     "react-scripts": "3.4.1",
-    "swr": "^0.3.0"
+    "swr": "^0.3.0",
+    "use-mobile-detect-hook": "^1.0.3"
   },
   "scripts": {
     "dev": "BROWSER=none react-scripts start",

@@ -1,29 +1,31 @@
 import React, { useEffect } from "react"
 import gsap from "gsap"
+import useMobileDetect from "use-mobile-detect-hook"
 
 function Icon(props) {
   useEffect(() => {
     const target = document.getElementById("text-group")
-    setTimeout(() => {
-      gsap
-        .timeline()
-        .fromTo(
-          target,
-          { rotateY: -270, opacity: 1 },
-          { rotateY: 0, repeat: -1, repeatDelay: 5, ease: "power2.out" }
-        )
-        .fromTo(
-          target,
-          { rotateY: -360 },
-          {
-            rotateY: 0,
-            delay: 5,
-            repeat: -1,
-            repeatDelay: 5,
-            ease: "power2.out",
-          }
-        )
-    }, 1000)
+    detectMobile.isMobile() &&
+      setTimeout(() => {
+        gsap
+          .timeline()
+          .fromTo(
+            target,
+            { rotateY: -270, opacity: 1 },
+            { rotateY: 0, repeat: -1, repeatDelay: 5, ease: "power2.out" }
+          )
+          .fromTo(
+            target,
+            { rotateY: -360 },
+            {
+              rotateY: 0,
+              delay: 5,
+              repeat: -1,
+              repeatDelay: 5,
+              ease: "power2.out",
+            }
+          )
+      }, 1000)
 
     return () => {}
   }, [])
