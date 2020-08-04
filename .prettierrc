@@ -1,0 +1,17 @@
+{
+  "endOfLine": "lf",
+  "semi": false,
+  "singleQuote": false,
+  "tabWidth": 2,
+  "trailingComma": "es5",
+  "bracketSpacing": true,
+  "overrides": [
+    {
+      "files": "**/*.mdx",
+      "options": {
+        "indent_size": 4,
+        "tabWidth": 4,
+      }
+    }
+  ]
+}

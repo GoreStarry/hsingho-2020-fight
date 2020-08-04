@@ -1,0 +1,7 @@
+.FacebookPostEmbed {
+  max-width: 100%;
+  @media screen and (orientation: portrait) {
+    overflow: scroll;
+    max-height: 70vh;
+  }
+}
