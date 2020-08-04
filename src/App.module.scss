@@ -83,6 +83,7 @@ body {
   @media screen and (orientation: landscape) {
   }
   @media screen and (orientation: portrait) {
+    // display: inline-block;
   }
 }
 
@@ -98,6 +99,11 @@ body {
 .box__poll {
   position: relative;
   margin-bottom: 2rem;
+  @media screen and (orientation: portrait) {
+    max-width: 100%;
+    width: 100vw;
+    // text-align: center;
+  }
 }
 
 .link__cover {

@@ -26,6 +26,7 @@ const backendlessAPIUrl =
 // ]
 
 function App() {
+  const [isRenderPage, setIsRenderPage] = useState(false)
   const refData = useRef(null)
 
   const { data, error } = useSWR(backendlessAPIUrl, (url) =>
@@ -33,6 +34,13 @@ function App() {
       return data
     })
   )
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsRenderPage(true)
+    }, 1000)
+    return () => {}
+  }, [])
 
   useEffect(() => {
     if (
@@ -73,8 +81,14 @@ function App() {
       <H2 className={sty.H2} />
       <WormMan className={sty.WormMan} />
       <img className={sty.tree} src={require("./images/tree.svg")} alt="" />
+      {/* {data && (
+        <FacebookPostEmbed
+          className={sty.FacebookPostEmbed}
+          postUrl={data[0]["fb_poll_url"]}
+        />
+      )} */}
       <div className={cx(sty.container_FB, "flex--center")}>
-        {data && (
+        {data && isRenderPage && (
           <>
             <div className={sty.box__poll}>
               <a
