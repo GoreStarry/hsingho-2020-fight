@@ -1,5 +1,5 @@
 import React from "react"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import useSWR from "swr"
 import axios from "axios"
 import cx from "classnames"
@@ -17,20 +17,34 @@ import sty from "./App.module.scss"
 const backendlessAPIUrl =
   "https://api.backendless.com/401F07F0-4899-A358-FFAA-5F19863E0900/325265EF-3C37-4014-B9A1-1D0603B7F2A9/data/XINGHO_2020_FIGHT?where=active%3Dtrue"
 
-const data = [
-  {
-    fb_poll_url:
-      "https://www.facebook.com/pxmartchannel/posts/3980394365364513",
-  },
-]
+// const data = [
+//   {
+//     fb_poll_url:
+//       "https://www.facebook.com/pxmartchannel/posts/3980394365364513",
+//   },
+// ]
 
 function App() {
-  // const { data, error } = useSWR(backendlessAPIUrl, (url) =>
-  //   axios.get(url).then(({ data }) => {
-  //     return data;
-  //   })
-  // );
-  console.log(data)
+  const refData = useRef(null)
+
+  const { data, error } = useSWR(backendlessAPIUrl, (url) =>
+    axios.get(url).then(({ data }) => {
+      return data
+    })
+  )
+
+  useEffect(() => {
+    if (
+      data?.[0]?.fb_poll_url &&
+      refData.current &&
+      data[0]["fb_poll_url"] !== refData.current[0]["fb_poll_url"]
+    ) {
+      window.location.reload()
+    }
+    refData.current = data
+    return () => {}
+  }, [data])
+
   return (
     <main className={sty.App}>
       <Title className={sty.Title} />
