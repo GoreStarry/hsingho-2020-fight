@@ -6,34 +6,36 @@ function Icon(props) {
   const detectMobile = useMobileDetect()
   useEffect(() => {
     const target = document.getElementById("text-group")
-    !detectMobile.isMobile() &&
-      setTimeout(() => {
-        gsap
-          .timeline()
-          .fromTo(
-            target,
-            { rotateY: -270, opacity: 1 },
-            {
-              rotateY: 0,
-              repeat: -1,
-              repeatDelay: 5,
-              duration: 1.2,
-              ease: "elastic.out(1,0.4)",
-            }
-          )
-          .fromTo(
-            target,
-            { rotateY: -360 },
-            {
-              rotateY: 0,
-              delay: 5,
-              repeat: -1,
-              repeatDelay: 5,
-              duration: 1.2,
-              ease: "elastic.out(1,0.4)",
-            }
-          )
-      }, 1000)
+
+    setTimeout(() => {
+      !detectMobile.isMobile()
+        ? gsap
+            .timeline()
+            .fromTo(
+              target,
+              { rotateY: -270, opacity: 1 },
+              {
+                rotateY: 0,
+                repeat: -1,
+                repeatDelay: 5,
+                duration: 1.2,
+                ease: "elastic.out(1,0.4)",
+              }
+            )
+            .fromTo(
+              target,
+              { rotateY: -360 },
+              {
+                rotateY: 0,
+                delay: 5,
+                repeat: -1,
+                repeatDelay: 5,
+                duration: 1.2,
+                ease: "elastic.out(1,0.4)",
+              }
+            )
+        : gsap.set(target, { opacity: 1 })
+    }, 2000)
 
     return () => {}
   }, [])
