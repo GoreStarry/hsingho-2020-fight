@@ -4,6 +4,7 @@ import useSWR from "swr"
 import axios from "axios"
 import cx from "classnames"
 import { Helmet } from "react-helmet"
+import gsap from "gsap"
 
 import FacebookPostEmbed from "./FacebookPostEmbed"
 import WormMan from "./components/svg/WormMan.jsx"
@@ -28,6 +29,7 @@ const backendlessAPIUrl =
 function App() {
   const [isRenderPage, setIsRenderPage] = useState(false)
   const refData = useRef(null)
+  const refGoPoll = useRef(null)
 
   const { data, error } = useSWR(backendlessAPIUrl, (url) =>
     axios.get(url).then(({ data }) => {
@@ -38,6 +40,14 @@ function App() {
   useEffect(() => {
     setTimeout(() => {
       setIsRenderPage(true)
+      gsap.to(refGoPoll.current, {
+        duration: 1,
+        ease: "bounce.in",
+        y: -100,
+        yoyo: true,
+        repeat: -1,
+        repeatDelay: 0.3,
+      })
     }, 1000)
     return () => {}
   }, [])
@@ -74,9 +84,11 @@ function App() {
                 target="__blank"
                 className={sty.link__cover}
                 href={data[0]["fb_poll_url"]}
-              >
-                <span>投票去！</span>
-              </a>
+              ></a>
+              <div className={sty.div__mask}>
+                <LeMan className={sty.LeManPost} />
+                <span ref={refGoPoll}>投票看結果～！</span>
+              </div>
               <FacebookPostEmbed
                 className={sty.FacebookPostEmbed}
                 postUrl={data[0]["fb_poll_url"]}
