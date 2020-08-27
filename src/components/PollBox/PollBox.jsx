@@ -145,7 +145,7 @@ const PollBox = ({
       </div>
     )
   } else {
-    return <div>Loading...</div>
+    return <div className={sty.box__loading}>Loading...</div>
   }
 }
 

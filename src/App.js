@@ -5,7 +5,7 @@ import axios from "axios"
 import cx from "classnames"
 import { Helmet } from "react-helmet"
 
-import FacebookPostEmbed from "./FacebookPostEmbed"
+// import FacebookPostEmbed from "./FacebookPostEmbed"
 import WormMan from "./components/svg/WormMan.jsx"
 import PollBox from "./components/PollBox/index.js"
 import LeMan from "./components/svg/LeMan.jsx"
@@ -57,47 +57,52 @@ function App() {
 
   return (
     <main className={sty.App}>
+      <Helmet>
+        <script
+          async
+          defer
+          src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2"
+        ></script>
+      </Helmet>
       <Title className={sty.Title} />
       <H2 className={sty.H2} />
       <WormMan className={sty.WormMan} />
       <img className={sty.tree} src={require("./images/tree.svg")} alt="" />
-
+      <div id="fb-root"></div>
       <div className={cx(sty.container_FB, "flex--center")}>
         {data && isRenderPage && (
-          <>
-            <div className={sty.box__poll}>
-              {data && data[0] ? (
-                <PollBox
-                  data={data[0]}
-                  isPollLocked={isPollLocked}
-                  setIsPollLocked={setIsPollLocked}
-                />
-              ) : (
-                "場次轉換中..."
-              )}
-            </div>
-            <div
-              className="fb-page"
-              data-href="https://www.facebook.com/hsinghoooh"
-              // data-tabs="timeline"
-              data-width=""
-              data-height=""
-              data-small-header="false"
-              data-adapt-container-width="true"
-              data-hide-cover="false"
-              data-show-facepile="true"
-            >
-              <blockquote
-                cite="https://www.facebook.com/hsinghoooh"
-                className="fb-xfbml-parse-ignore"
-              >
-                <a href="https://www.facebook.com/hsinghoooh">
-                  星合有限公司 &amp; 合作社 Hsingho Co., Ltd. &amp; HoooH
-                </a>
-              </blockquote>
-            </div>
-          </>
+          <div className={sty.box__poll}>
+            {data && data[0] ? (
+              <PollBox
+                data={data[0]}
+                isPollLocked={isPollLocked}
+                setIsPollLocked={setIsPollLocked}
+              />
+            ) : (
+              "場次轉換中..."
+            )}
+          </div>
         )}
+        <div
+          className="fb-page"
+          data-href="https://www.facebook.com/hsinghoooh"
+          // data-tabs="timeline"
+          data-width=""
+          data-height=""
+          data-small-header="false"
+          data-adapt-container-width="true"
+          data-hide-cover="false"
+          data-show-facepile="true"
+        >
+          <blockquote
+            cite="https://www.facebook.com/hsinghoooh"
+            className="fb-xfbml-parse-ignore"
+          >
+            <a href="https://www.facebook.com/hsinghoooh">
+              星合有限公司 &amp; 合作社 Hsingho Co., Ltd. &amp; HoooH
+            </a>
+          </blockquote>
+        </div>
       </div>
       <LeMan className={sty.LeMan} />
     </main>
