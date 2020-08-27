@@ -4,63 +4,54 @@ import useSWR from "swr"
 import axios from "axios"
 import cx from "classnames"
 import { Helmet } from "react-helmet"
-import gsap from "gsap"
 
 import FacebookPostEmbed from "./FacebookPostEmbed"
 import WormMan from "./components/svg/WormMan.jsx"
+import PollBox from "./components/PollBox/index.js"
 import LeMan from "./components/svg/LeMan.jsx"
 import Title from "./components/svg/Title.jsx"
 import H2 from "./components/svg/H2.jsx"
+
+import { checkIsPollLocked } from "./helper/getPollLocked.js"
 
 import "./App.css"
 import "./global.scss"
 import sty from "./App.module.scss"
 
+const getActiveVSList = require("./api/backendless/getActiveVSList.js")
 const backendlessAPIUrl =
   "https://api.backendless.com/401F07F0-4899-A358-FFAA-5F19863E0900/325265EF-3C37-4014-B9A1-1D0603B7F2A9/data/XINGHO_2020_FIGHT?where=active%3Dtrue"
 
 // const data = [
 //   {
-//     fb_poll_url:
+//     poll_id:
 //       "https://www.facebook.com/pxmartchannel/posts/3980394365364513",
 //   },
 // ]
 
 function App() {
   const [isRenderPage, setIsRenderPage] = useState(false)
-  const refData = useRef(null)
+  const [isPollLocked, setIsPollLocked] = useState(false)
+  // const refData = useRef(null)
   const refGoPoll = useRef(null)
 
-  const { data, error } = useSWR(backendlessAPIUrl, (url) =>
-    axios.get(url).then(({ data }) => {
-      return data
-    })
+  const { data, error } = useSWR(
+    "https://api.backendless.com/",
+    (url) => getActiveVSList()
+    // axios.get(url).then(({ data }) => {
+    //   return data
+    // })
   )
 
   useEffect(() => {
-    setTimeout(() => {
-      setIsRenderPage(true)
-      gsap.to(refGoPoll.current, {
-        duration: 1,
-        ease: "bounce.in",
-        y: -100,
-        yoyo: true,
-        repeat: -1,
-        repeatDelay: 0.3,
-      })
-    }, 1000)
+    setIsRenderPage(true)
     return () => {}
   }, [])
 
   useEffect(() => {
-    if (
-      data?.[0]?.fb_poll_url &&
-      refData.current &&
-      data[0]["fb_poll_url"] !== refData.current[0]["fb_poll_url"]
-    ) {
-      window.location.reload()
+    if (data) {
+      data[0] && setIsPollLocked(checkIsPollLocked(data[0].poll_id))
     }
-    refData.current = data
     return () => {}
   }, [data])
 
@@ -70,29 +61,20 @@ function App() {
       <H2 className={sty.H2} />
       <WormMan className={sty.WormMan} />
       <img className={sty.tree} src={require("./images/tree.svg")} alt="" />
-      {/* {data && (
-        <FacebookPostEmbed
-          className={sty.FacebookPostEmbed}
-          postUrl={data[0]["fb_poll_url"]}
-        />
-      )} */}
+
       <div className={cx(sty.container_FB, "flex--center")}>
         {data && isRenderPage && (
           <>
             <div className={sty.box__poll}>
-              <a
-                target="__blank"
-                className={sty.link__cover}
-                href={data[0]["fb_poll_url"]}
-              ></a>
-              <div className={sty.div__mask}>
-                <LeMan className={sty.LeManPost} />
-                <span ref={refGoPoll}>投票看結果～！</span>
-              </div>
-              <FacebookPostEmbed
-                className={sty.FacebookPostEmbed}
-                postUrl={data[0]["fb_poll_url"]}
-              />
+              {data && data[0] ? (
+                <PollBox
+                  data={data[0]}
+                  isPollLocked={isPollLocked}
+                  setIsPollLocked={setIsPollLocked}
+                />
+              ) : (
+                "場次轉換中..."
+              )}
             </div>
             <div
               className="fb-page"

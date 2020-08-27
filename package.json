@@ -11,6 +11,7 @@
     "react-dom": "^16.13.1",
     "react-helmet": "^6.1.0",
     "react-scripts": "3.4.1",
+    "react-spring": "9.0.0-rc.3",
     "swr": "^0.3.0",
     "use-mobile-detect-hook": "^1.0.3"
   },

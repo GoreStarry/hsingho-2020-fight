@@ -1,0 +1,94 @@
+.PollBox {
+  position: relative;
+  z-index: 1;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+  @media screen and (orientation: landscape) {
+    width: 50vw;
+  }
+
+  @media screen and (orientation: portrait) {
+    width: 100%;
+  }
+  h1 {
+    text-align: center;
+    background-color: #359339;
+    background-color: #269cc0;
+    background-color: #d66ca6;
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    border-radius: 2rem;
+    padding: 0.4rem 1rem;
+    padding-top: 0.6rem;
+    font-size: 1.3rem;
+    line-height: 1.5rem;
+    top: -0.5rem;
+    font-weight: bold;
+  }
+}
+
+.box__percent {
+  position: absolute;
+  bottom: 0;
+  background-color: rgba(#269cc0, 0.6);
+  width: 100%;
+  color: white;
+  font-size: 2rem;
+  text-align: center;
+  padding-top: 5px;
+  border: 4px solid #d66ca6;
+  border-top: none;
+}
+
+.section {
+  position: relative;
+  cursor: pointer;
+  width: 50%;
+  flex-grow: 1;
+  margin: 0 5px;
+
+  // &:first-of-type {
+  //   img {
+  //     border-right: 2px solid #d66ca6;
+  //   }
+  // }
+  // &:last-of-type {
+  //   img {
+  //     border-left: 2px solid #d66ca6;
+  //   }
+  // }
+
+  img {
+    width: 100%;
+    object-fit: cover;
+    border: 4px solid #d66ca6;
+    border-radius: 0.5rem;
+
+    @media screen and (orientation: landscape) {
+      height: 25vw;
+    }
+
+    @media screen and (orientation: portrait) {
+      height: 50vw;
+    }
+  }
+  h2 {
+    width: 90%;
+    position: absolute;
+    bottom: -2.5rem;
+    border-radius: 1.5rem;
+    text-align: center;
+    font-size: 1.5rem;
+    line-height: 3rem;
+    background-color: #359339;
+    border: 3px solid black;
+    font-weight: bold;
+    color: #eb6364;
+    // border-top: 3px solid #d66ca6;
+    text-shadow: 1px 1px 0px black, -1px 1px 0px black, 1px -1px 0px black,
+      -1px -1px 0px black;
+  }
+}
