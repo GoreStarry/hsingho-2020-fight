@@ -79,7 +79,7 @@ function App() {
                 setIsPollLocked={setIsPollLocked}
               />
             ) : (
-              "場次轉換中..."
+              <div align="center">"場次轉換中..."</div>
             )}
           </div>
         )}

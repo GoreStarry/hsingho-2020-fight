@@ -12,6 +12,7 @@ function votePoll({ poll_id, choice_id }) {
       console.log(data)
     })
     .catch((err) => {
+      alert("本場投票已終了～！")
       console.log(err)
     })
 }
