@@ -73,7 +73,7 @@ function App() {
         {data && isRenderPage && (
           <div className={sty.box__QA}>
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSeeUqMApFta3HHJs00N4UEif-Y-SsdiO2JBOJKE610fAcd2iA/viewform">
-              ！問卷回饋！
+              ～問卷回饋～
             </a>
           </div>
         )}
