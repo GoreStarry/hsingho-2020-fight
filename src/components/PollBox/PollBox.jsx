@@ -81,20 +81,24 @@ const PollBox = ({
         votePollBL({
           poll_id,
           choice_name,
-        }).then(() => {
-          mutate({
-            P1: {
-              id: data.P1.id,
-              score: newP1Score,
-              percent: `${P1Percent}%`,
-            },
-            P2: {
-              id: data.P2.id,
-              score: newP2Score,
-              percent: `${P2Percent}%`,
-            },
-          })
         })
+          .then(() => {
+            mutate({
+              P1: {
+                id: data.P1.id,
+                score: newP1Score,
+                percent: `${P1Percent}%`,
+              },
+              P2: {
+                id: data.P2.id,
+                score: newP2Score,
+                percent: `${P2Percent}%`,
+              },
+            })
+          })
+          .catch((error) => {
+            alert("本場次投票終了～！")
+          })
 
         // setTimeout(() => {
 
