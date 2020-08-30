@@ -7,10 +7,13 @@ import gsap from "gsap"
 
 import sty from "./PollBox.module.scss"
 
-import getResult from "../../api/AgorAPI/getResult.js"
+// import getResult from "../../api/AgorAPI/getResult.js"
+import getP1P2Result from "../../api/backendless/getP1P2Result.js"
+import votePollBL from "../../api/backendless/votePollBL.js"
 import { setPollLocked, checkIsPollLocked } from "../../helper/getPollLocked.js"
 
-const votePoll = require("../../api/AgorAPI/votePoll.js")
+// const votePoll = require("../../api/AgorAPI/votePoll.js")
+// const votePollBL = require("../../api/backendless/votePollBL.js")
 
 const PollBox = ({
   data: { poll_id, P1, P2 },
@@ -20,11 +23,13 @@ const PollBox = ({
   const refGoPoll = useRef(null)
   const { data, error, mutate } = useSWR(
     `https://api.open-agora.com/polls/${poll_id}`,
-    (url) => getResult({ poll_id })
+    (url) => getP1P2Result({ poll_id, P1_name: P1.name, P2_name: P2.name })
     // axios.get(url).then(({ data }) => {
     //   return data
     // })
   )
+
+  console.log(data)
 
   useEffect(() => {
     if (!isPollLocked) {
@@ -59,7 +64,7 @@ const PollBox = ({
   })
 
   const voteTheChoice = useCallback(
-    (choice_id, Player) => {
+    (choice_name, Player) => {
       if (checkIsPollLocked(poll_id)) {
         alert("該場已投票過了喔！")
       } else {
@@ -73,9 +78,9 @@ const PollBox = ({
           ? Math.round((newP2Score / allScore) * 100)
           : 0
 
-        votePoll({
+        votePollBL({
           poll_id,
-          choice_id,
+          choice_name,
         }).then(() => {
           mutate({
             P1: {
