@@ -110,6 +110,19 @@ body {
   }
 }
 
+.box__QA {
+  margin-bottom: 1rem;
+  transform: skewX(-15deg);
+  padding: 0.5rem 1rem;
+  background-color: #d66ca6;
+  border: 5px solid #fff100;
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  a {
+    color: white;
+  }
+}
+
 .link__cover {
   overflow: hidden;
   display: block;

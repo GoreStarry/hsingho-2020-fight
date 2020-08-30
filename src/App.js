@@ -71,6 +71,13 @@ function App() {
       <div id="fb-root"></div>
       <div className={cx(sty.container_FB, "flex--center")}>
         {data && isRenderPage && (
+          <div className={sty.box__QA}>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeeUqMApFta3HHJs00N4UEif-Y-SsdiO2JBOJKE610fAcd2iA/viewform">
+              ！問卷回饋！
+            </a>
+          </div>
+        )}
+        {data && isRenderPage && (
           <div className={sty.box__poll}>
             {data && data[0] ? (
               <PollBox
@@ -79,10 +86,11 @@ function App() {
                 setIsPollLocked={setIsPollLocked}
               />
             ) : (
-              <div align="center">"場次轉換中..."</div>
+              <div align="center">場次轉換中...</div>
             )}
           </div>
         )}
+
         <div
           className="fb-page"
           data-href="https://www.facebook.com/hsinghoooh"
