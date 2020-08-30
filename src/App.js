@@ -70,7 +70,7 @@ function App() {
       <img className={sty.tree} src={require("./images/tree.svg")} alt="" />
       <div id="fb-root"></div>
       <div className={cx(sty.container_FB, "flex--center")}>
-        {data && isRenderPage && (
+        {data && !data[0] && (
           <div className={sty.box__QA}>
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSeeUqMApFta3HHJs00N4UEif-Y-SsdiO2JBOJKE610fAcd2iA/viewform">
               ～問卷回饋～
